@@ -17,33 +17,45 @@
 -->
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration xmlns:xi="http://www.w3.org/2001/XInclude">
-	<!--  The following properties are used for 2-way SSL client server validation -->
 	<property>
-		<name>xasecure.policymgr.clientssl.keystore</name>
-		<value>hadoopdev-clientcert.jks</value>
-		<description> 
-			Java Keystore files 
+		<name>ranger.plugin.kafka.policy.rest.url</name>
+		<value>http://localhost:6080</value>
+		<description>
+			URL to Ranger Admin
 		</description>
 	</property>
+
 	<property>
-		<name>xasecure.policymgr.clientssl.truststore</name>
-		<value>cacerts-xasecure.jks</value>
-		<description> 
-			java truststore file
+		<name>ranger.plugin.kafka.service.name</name>
+		<value>KafkaTest</value>
+		<description>
+			Name of the Ranger service containing policies for this SampleApp instance
 		</description>
 	</property>
+
 	<property>
-		<name>xasecure.policymgr.clientssl.keystore.credential.file</name>
-		<value>jceks://file/tmp/keystore-hadoopdev-ssl.jceks</value>
-		<description> 
-			java  keystore credential file
+        <name>ranger.plugin.kafka.policy.source.impl</name>
+        <value>org.apache.ranger.authorization.kafka.authorizer.RangerAdminClientImpl</value>
+        <!-- <value>org.apache.ranger.admin.client.RangerAdminRESTClient</value> -->
+        <description>
+            Policy source.
+        </description>
+    </property>
+    
+	<property>
+		<name>ranger.plugin.kafka.policy.pollIntervalMs</name>
+		<value>30000</value>
+		<description>
+			How often to poll for changes in policies?
 		</description>
 	</property>
+
 	<property>
-		<name>xasecure.policymgr.clientssl.truststore.credential.file</name>
-		<value>jceks://file/tmp/truststore-hadoopdev-ssl.jceks</value>
-		<description> 
-			java  truststore credential file
+		<name>ranger.plugin.kafka.policy.cache.dir</name>
+		<value>${project.build.directory}</value>
+		<description>
+			Directory where Ranger policies are cached after successful retrieval from the source
 		</description>
 	</property>
+
 </configuration>
